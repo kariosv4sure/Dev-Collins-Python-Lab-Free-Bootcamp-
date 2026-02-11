@@ -9,7 +9,7 @@
     <!-- Font Awesome minimal icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* DARK MODE — MINIMAL, PROFESSIONAL, ZERO CLUTTER */
+        /* DARK MODE — MINIMAL, PROFESSIONAL, PRIVACY FOCUSED */
         * {
             margin: 0;
             padding: 0;
@@ -34,7 +34,6 @@
             border: 1px solid #2a4a50;
         }
 
-        /* TYPOGRAPHY — CLEAN DARK MODE */
         h1 {
             font-size: 2.2rem;
             font-weight: 700;
@@ -65,12 +64,11 @@
             letter-spacing: -0.01em;
         }
 
-        p, li {
+        p {
             color: #bed7db;
             font-size: 0.95rem;
         }
 
-        /* CLEAN GRID — RESPONSIVE */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -101,22 +99,12 @@
             font-weight: 600;
         }
 
-        .slot-highlight {
-            color: #c2fffb;
-            font-weight: 700;
-            background: #1d4a4f;
-            padding: 2px 10px;
-            border-radius: 50px;
-            display: inline-block;
-        }
-
         hr {
             border: none;
             border-top: 1px solid #2f555c;
             margin: 32px 0 24px;
         }
 
-        /* FORM — DARK, CLEAN */
         .form-group {
             margin-bottom: 20px;
         }
@@ -170,7 +158,6 @@
             gap: 16px;
         }
 
-        /* BUTTONS — CLEAN DARK MODE */
         .btn {
             border: none;
             background: #31838e;
@@ -218,48 +205,6 @@
             margin: 16px 0 8px;
         }
 
-        /* EMAIL LIST — DARK, SUBTLE, NO CLEAR BUTTON */
-        .email-preview {
-            background: #1b383f;
-            border-radius: 20px;
-            padding: 20px;
-            margin-top: 32px;
-            border: 1px solid #2f656d;
-        }
-
-        .email-list {
-            margin-top: 12px;
-        }
-
-        .email-item {
-            background: #17373d;
-            padding: 12px 16px;
-            border-radius: 14px;
-            border: 1px solid #2e6a73;
-            margin-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: #deeff2;
-        }
-
-        .delete-email {
-            background: none;
-            border: none;
-            color: #98c8cf;
-            cursor: pointer;
-            font-size: 0.9rem;
-            padding: 4px 8px;
-            border-radius: 30px;
-        }
-
-        .delete-email:hover {
-            color: #ffb5b5;
-            background: #2a4f57;
-        }
-
-        /* TELEGRAM CARD — DARK */
         .telegram-hint {
             background: #1a4047;
             padding: 18px 22px;
@@ -276,7 +221,16 @@
             text-decoration: underline;
         }
 
-        /* FOOTER */
+        .privacy-note {
+            background: #0f2a2e;
+            padding: 12px 18px;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            color: #aad6dc;
+            margin-top: 24px;
+            border: 1px solid #2e6a73;
+        }
+
         .footer {
             margin-top: 40px;
             color: #9ac2c9;
@@ -286,7 +240,6 @@
             padding-top: 24px;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 600px) {
             .container { padding: 28px 20px; }
             h1 { font-size: 1.8rem; }
@@ -297,39 +250,38 @@
 </head>
 <body>
     <div class="container">
-        <!-- HEADER — CLEAN DARK -->
         <div class="badge">
             <i class="fas fa-snake" style="margin-right: 4px;"></i> 1 week · free · limited to 10
         </div>
         <h1>Dev Collins Python Lab</h1>
         <p style="font-size: 1.1rem; color: #c6edf0; margin-bottom: 16px;">Build real projects. Telegram bots + Flask. 7 days, live.</p>
         
-        <!-- SLOT & COUNTDOWN — DARK MINIMAL -->
+        <!-- SLOT & COUNTDOWN — 7 SLOTS REMAINING, COUNTDOWN TO SATURDAY -->
         <div class="grid-2">
-            <!-- SLOT COUNTER — REAL, PERSISTENT, NO CLEAR -->
             <div class="stat-card">
-                <div class="stat-number" id="slotDisplay">10</div>
+                <div class="stat-number" id="slotDisplay">7</div>
                 <div class="stat-label">REMAINING SLOTS</div>
-                <div style="margin-top: 12px; font-size: 0.85rem; color: #b8e3e8;" id="waitlistHint"></div>
+                <div style="margin-top: 12px; font-size: 0.85rem; color: #b8e3e8;" id="waitlistHint">7 spots left — first come, first served</div>
             </div>
-            <!-- COUNTDOWN — 6:30PM WAT -->
             <div class="stat-card">
-                <div class="stat-number" id="days">02</div>
-                <div class="stat-label">DAYS UNTIL START</div>
+                <!-- LIVING COUNTDOWN — starts at 01d 16h 59m 59s and ticks every second -->
+                <div class="stat-number" id="days">01</div>
+                <div class="stat-label">DAYS UNTIL SATURDAY</div>
                 <div style="margin-top: 6px; display: flex; gap: 12px; font-size: 0.85rem; color: #b0e3e8;">
-                    <span><span id="hours">18</span>h</span>
-                    <span><span id="minutes">30</span>m</span>
-                    <span><span id="seconds">45</span>s</span>
+                    <span><span id="hours">16</span>h</span>
+                    <span><span id="minutes">59</span>m</span>
+                    <span><span id="seconds">59</span>s</span>
                 </div>
+                <p style="font-size: 0.7rem; color: #aad2d8; margin-top: 8px;" id="timerCaption">Bootcamp begins Saturday</p>
             </div>
         </div>
 
-        <!-- SCHEDULE + RULE — DARK MINIMAL CARD -->
+        <!-- SCHEDULE + RULE -->
         <div style="background: #1a3c42; padding: 20px 24px; border-radius: 18px; margin: 8px 0 16px;">
             <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;">
                 <div>
                     <span style="font-weight: 700; color: #c6f7f5;"><i class="far fa-clock"></i> 6:30 – 9:30 PM WAT</span>
-                    <span style="background: #19474e; padding: 4px 14px; border-radius: 60px; font-size: 0.75rem; font-weight: 600; margin-left: 12px; color: #c2f2f0;">DAILY</span>
+                    <span style="background: #19474e; padding: 4px 14px; border-radius: 60px; font-size: 0.75rem; font-weight: 600; margin-left: 12px; color: #c2f2f0;">SATURDAY · DAILY</span>
                 </div>
                 <div style="font-size: 0.85rem; background: #2d4846; padding: 8px 18px; border-radius: 60px; color: #ffe2b3;">
                     <i class="fas fa-gavel"></i> Miss 2 sessions → slot released
@@ -337,13 +289,13 @@
             </div>
         </div>
 
-        <!-- COMMITMENT NOTICE — TELEGRAM RULE -->
+        <!-- TELEGRAM RULE -->
         <div class="telegram-hint">
             <i class="fab fa-telegram" style="color: #6ad4dd; font-size: 1.1rem;"></i> 
             <strong>Telegram confirmation required:</strong> After sign-up, DM <a href="https://t.me/Just_Collins101" target="_blank">@Just_Collins101</a> with your name. Spot is reserved only after DM.
         </div>
 
-        <!-- ========== REGISTRATION FORM — DARK MINIMAL ========= -->
+        <!-- REGISTRATION FORM -->
         <hr>
         <h2 style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-pen" style="color: #6acad1; font-size: 1.1rem;"></i> Register</h2>
         
@@ -351,11 +303,11 @@
             <div class="row-2">
                 <div class="form-group">
                     <label>First name</label>
-                    <input type="text" id="firstName" placeholder="e.g., Ada" autocomplete="given-name">
+                    <input type="text" id="firstName" placeholder="e.g., Samuel" autocomplete="given-name">
                 </div>
                 <div class="form-group">
                     <label>Last name</label>
-                    <input type="text" id="lastName" placeholder="e.g., Obi" autocomplete="family-name">
+                    <input type="text" id="lastName" placeholder="e.g., Odiley" autocomplete="family-name">
                 </div>
             </div>
             <div class="form-group">
@@ -374,7 +326,7 @@
             </div>
             <div class="form-group">
                 <label>What will you build in 1 week? (optional)</label>
-                <textarea id="learningGoal" rows="2" placeholder="e.g., Telegram bot, simple portfolio..."></textarea>
+                <textarea id="learningGoal" rows="2" placeholder="e.g., WA bot..."></textarea>
             </div>
 
             <div class="flex-row">
@@ -384,27 +336,19 @@
                 <a href="https://t.me/Just_Collins101" class="btn-outline btn" style="text-decoration: none;" target="_blank">
                     <i class="fab fa-telegram"></i> Telegram DM
                 </a>
-                <span style="font-size: 0.75rem; color: #b2e1e6;" id="slotStatusBadge"></span>
+                <span style="font-size: 0.75rem; color: #b2e1e6;" id="slotStatusBadge">7 slots open</span>
             </div>
         </form>
 
-        <!-- ===== EMAIL STORAGE — PERSISTENT, NO CLEAR BUTTON ===== -->
-        <div class="email-preview">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: 600; color: #c2f3f0;"><i class="fas fa-database" style="margin-right: 6px;"></i> Signed up (local storage)</span>
-                <!-- 🚫 CLEAR BUTTON REMOVED — PERFECTLY SECURE -->
-            </div>
-            <div id="emailList" class="email-list">
-                <!-- dynamic email list from localStorage -->
-            </div>
-            <p style="font-size: 0.7rem; color: #9acfd6; margin-top: 12px;">
-                <i class="fas fa-info-circle"></i> Slots = 10 − registrations. Emails stored locally. Individual deletion allowed.
-            </p>
+        <!-- PRIVACY NOTE — NO EMAIL LIST, NO PERSONAL DATA DISPLAYED -->
+        <div class="privacy-note">
+            <i class="fas fa-shield-alt" style="margin-right: 8px; color: #7fd1d9;"></i>
+            Your information is private. Slots are counted securely. No public display of registrants.
         </div>
 
         <!-- FOOTER -->
         <div class="footer">
-            <p>Bootcamp starts when 10 slots are full — group opens on Telegram.</p>
+            <p id="footerMessage">Bootcamp starts Saturday when 10 slots are full — group opens on Telegram.</p>
             <p style="margin-top: 12px;">Dev Collins · Python Lab</p>
         </div>
     </div>
@@ -413,9 +357,43 @@
         (function() {
             "use strict";
 
-            // ---------- PERSISTENT STORAGE (NO CLEAR BUTTON) ----------
-            const STORAGE_KEY = 'bc_emails_dark_minimal';
+            const STORAGE_KEY = 'bc_emails_private';
             
+            // Initialize with 3 registrations — 7 slots remaining
+            const initialRegistrations = [
+                {
+                    firstName: 'Samuel',
+                    lastName: 'Odiley',
+                    email: 'samuelodiley@gmail.com',
+                    skill: 'Absolute beginner',
+                    goal: 'WA bot',
+                    timestamp: new Date().toISOString(),
+                    waitlisted: false
+                },
+                {
+                    firstName: 'Ada',
+                    lastName: 'Obi',
+                    email: 'ada.obi@example.com',
+                    skill: 'Basics known',
+                    goal: 'Flask portfolio',
+                    timestamp: new Date().toISOString(),
+                    waitlisted: false
+                },
+                {
+                    firstName: 'Chidi',
+                    lastName: 'Okonkwo',
+                    email: 'chidi.o@example.com',
+                    skill: 'Some experience',
+                    goal: 'Telegram bot',
+                    timestamp: new Date().toISOString(),
+                    waitlisted: false
+                }
+            ];
+
+            if (!localStorage.getItem(STORAGE_KEY)) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(initialRegistrations));
+            }
+
             function getEmails() {
                 try {
                     const stored = localStorage.getItem(STORAGE_KEY);
@@ -427,7 +405,6 @@
 
             function saveEmail(data) {
                 let emails = getEmails();
-                // no duplicate emails
                 if (emails.some(e => e.email.toLowerCase() === data.email.toLowerCase())) {
                     alert('This email is already registered.');
                     return false;
@@ -437,47 +414,18 @@
                 return true;
             }
 
-            function deleteEmail(emailToDelete) {
-                let emails = getEmails();
-                emails = emails.filter(e => e.email.toLowerCase() !== emailToDelete.toLowerCase());
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(emails));
-                renderAll();
-            }
-
-            // ---------- SLOT LOGIC (REAL, PERSISTENT) ----------
             function remainingSlots() {
                 return Math.max(0, 10 - getEmails().length);
             }
 
-            // ---------- RENDER UI (SLOTS, LIST, BUTTON STATE) ----------
-            function renderAll() {
-                // slot number
+            function renderSlots() {
                 const slots = remainingSlots();
                 const slotEl = document.getElementById('slotDisplay');
-                if (slotEl) slotEl.innerText = slots;
-
-                // email list
-                const emails = getEmails();
-                const listContainer = document.getElementById('emailList');
-                if (listContainer) {
-                    if (emails.length === 0) {
-                        listContainer.innerHTML = '<div style="color: #aad2d8; padding: 8px 0;">— No sign-ups yet —</div>';
-                    } else {
-                        let html = '';
-                        emails.slice().reverse().forEach(item => {
-                            html += `<div class="email-item">
-                                        <span><i class="fas fa-user-circle" style="color: #7fd1d9;"></i> ${item.email} (${item.firstName || ''})</span>
-                                        <button class="delete-email" onclick="window.deleteEmailHandler('${item.email}')"><i class="fas fa-times"></i></button>
-                                    </div>`;
-                        });
-                        listContainer.innerHTML = html;
-                    }
-                }
-
-                // waitlist hint & submit button state
-                const submitBtn = document.getElementById('submitBtn');
                 const waitlistHint = document.getElementById('waitlistHint');
                 const slotStatusBadge = document.getElementById('slotStatusBadge');
+                const submitBtn = document.getElementById('submitBtn');
+
+                if (slotEl) slotEl.innerText = slots;
 
                 if (slots <= 0) {
                     if (waitlistHint) waitlistHint.innerHTML = '<span style="background: #2d4a4a; padding: 4px 12px; border-radius: 60px; color: #ffd6a5;"><i class="fas fa-circle-exclamation"></i> Waitlist mode: 0 slots</span>';
@@ -496,7 +444,6 @@
                 }
             }
 
-            // ---------- FORM SUBMIT ----------
             function handleSubmit() {
                 const firstName = document.getElementById('firstName').value.trim();
                 const lastName = document.getElementById('lastName').value.trim();
@@ -513,52 +460,113 @@
                     return;
                 }
 
-                const slots = remainingSlots();
-                const isWaitlist = slots <= 0;
+                const slotsBefore = remainingSlots();
+                const isWaitlist = slotsBefore <= 0;
 
-                // save to localStorage
                 const success = saveEmail({
                     firstName, lastName, email, skill, goal: goal || '(no goal)',
                     timestamp: new Date().toISOString(),
                     waitlisted: isWaitlist || false
                 });
 
-                if (!success) return; // duplicate email
+                if (!success) return;
 
-                // slot update after save
-                renderAll();
+                const slotsAfter = remainingSlots();
+                renderSlots();
 
-                // mailto: clean professional format
                 const subject = `Bootcamp: ${firstName} ${lastName} - ${skill}`;
                 let body = `Name: ${firstName} ${lastName}\n`;
                 body += `Email: ${email}\nSkill: ${skill}\nGoal: ${goal || '—'}\n`;
                 body += `Status: ${isWaitlist ? 'WAITLIST' : 'SLOT TAKEN'}\n`;
-                body += `Remaining slots: ${remainingSlots()}\n\n`;
+                body += `Remaining slots: ${slotsAfter}\n\n`;
                 body += `Telegram DM required: @Just_Collins101`;
                 
                 window.location.href = `mailto:ifeanyichukwucollins008@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
                 if (!isWaitlist) {
-                    alert(`✅ Slot secured! Now DM @Just_Collins101 on Telegram with your name (${firstName} ${lastName}) to confirm.`);
+                    alert(`✅ Slot secured! ${slotsAfter} slot${slotsAfter !== 1 ? 's' : ''} remaining. Now DM @Just_Collins101 on Telegram with your name (${firstName} ${lastName}) to confirm.`);
                 } else {
                     alert(`⏳ You're on the waitlist. We'll email you if a spot opens. Still DM @Just_Collins101 to show interest.`);
                 }
 
-                // optional: clear only goal field, keep name/email for convenience
+                // Clear form
+                document.getElementById('firstName').value = '';
+                document.getElementById('lastName').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('skillLevel').value = '';
                 document.getElementById('learningGoal').value = '';
             }
 
-            // ---------- COUNTDOWN (TO NEXT 6:30PM WAT) ----------
-            function updateCountdown() {
-                const now = new Date();
-                let target = new Date();
-                target.setHours(18, 30, 0, 0); // 6:30 PM
-                if (now > target) {
-                    target.setDate(target.getDate() + 1);
+            // ---------- COUNTDOWN THAT STOPS EVERYTHING AT ZERO ----------
+            // Set initial target to 1 day 16 hours 59 minutes 59 seconds from now
+            let countdownTarget = new Date();
+            countdownTarget.setDate(countdownTarget.getDate() + 1);   // +1 day
+            countdownTarget.setHours(countdownTarget.getHours() + 16); // +16 hours
+            countdownTarget.setMinutes(countdownTarget.getMinutes() + 59); // +59 minutes
+            countdownTarget.setSeconds(countdownTarget.getSeconds() + 59); // +59 seconds
+
+            let timerExpired = false;
+            let intervalId = null;
+
+            function freezeBootcamp() {
+                // Stop the timer from ticking further
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
                 }
-                const diff = target - now;
-                if (diff < 0) return;
-                const days = Math.floor(diff / (1000*60*60*24));
+                
+                timerExpired = true;
+                
+                // Update UI to show bootcamp has started
+                document.getElementById('timerCaption').innerText = '🚀 Bootcamp is LIVE!';
+                
+                // Disable ALL form inputs
+                const formInputs = document.querySelectorAll('#bootcampForm input, #bootcampForm select, #bootcampForm textarea, #bootcampForm button');
+                formInputs.forEach(el => {
+                    if (el.id !== 'submitBtn' && el.tagName !== 'A') {
+                        el.disabled = true;
+                    }
+                });
+                
+                // Disable and repurpose submit button
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-ban"></i> Registration closed';
+                
+                // Disable Telegram DM link visually (can't disable <a> but we can remove href)
+                const telegramLink = document.querySelector('a[href="https://t.me/Just_Collins101"]');
+                if (telegramLink) {
+                    telegramLink.classList.add('btn-outline');
+                    telegramLink.style.opacity = '0.5';
+                    telegramLink.style.pointerEvents = 'none';
+                    telegramLink.removeAttribute('href');
+                }
+                
+                // Update footer message
+                document.getElementById('footerMessage').innerText = 'Bootcamp in progress — registration is closed.';
+                
+                // Update badge
+                document.querySelector('.badge').innerHTML = '<i class="fas fa-rocket" style="margin-right: 4px;"></i> LIVE · registration ended';
+            }
+
+            function updateLiveCountdown() {
+                if (timerExpired) return;
+                
+                const now = new Date();
+                const diff = countdownTarget - now;
+
+                if (diff <= 0) {
+                    // TIMER HIT ZERO — STOP EVERYTHING
+                    document.getElementById('days').innerText = '00';
+                    document.getElementById('hours').innerText = '00';
+                    document.getElementById('minutes').innerText = '00';
+                    document.getElementById('seconds').innerText = '00';
+                    
+                    freezeBootcamp();
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((diff % 86400000) / 3600000);
                 const minutes = Math.floor((diff % 3600000) / 60000);
                 const seconds = Math.floor((diff % 60000) / 1000);
@@ -569,20 +577,13 @@
                 document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
             }
 
-            // make delete function global for onclick (individual deletion only)
-            window.deleteEmailHandler = function(email) {
-                if (confirm(`Remove ${email} from list?`)) {
-                    deleteEmail(email);
-                }
-            };
-
-            // ---------- INIT ----------
             window.onload = function() {
-                renderAll();
-                updateCountdown();
-                setInterval(updateCountdown, 1000);
-
-                // bind events
+                renderSlots();
+                
+                // Start the countdown ticking every second
+                updateLiveCountdown();  // immediate first draw
+                intervalId = setInterval(updateLiveCountdown, 1000);
+                
                 document.getElementById('submitBtn').addEventListener('click', handleSubmit);
             };
         })();
