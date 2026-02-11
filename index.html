@@ -256,7 +256,7 @@
         <h1>Dev Collins Python Lab</h1>
         <p style="font-size: 1.1rem; color: #c6edf0; margin-bottom: 16px;">Build real projects. Telegram bots + Flask. 7 days, live.</p>
         
-        <!-- SLOT & COUNTDOWN — 7 SLOTS REMAINING, COUNTDOWN TO SATURDAY -->
+        <!-- SLOT & COUNTDOWN — 7 SLOTS REMAINING, PERSISTENT COUNTDOWN -->
         <div class="grid-2">
             <div class="stat-card">
                 <div class="stat-number" id="slotDisplay">7</div>
@@ -264,7 +264,7 @@
                 <div style="margin-top: 12px; font-size: 0.85rem; color: #b8e3e8;" id="waitlistHint">7 spots left — first come, first served</div>
             </div>
             <div class="stat-card">
-                <!-- LIVING COUNTDOWN — starts at 01d 16h 59m 59s and ticks every second -->
+                <!-- PERSISTENT COUNTDOWN — SAME TARGET FOR EVERY VISITOR -->
                 <div class="stat-number" id="days">01</div>
                 <div class="stat-label">DAYS UNTIL SATURDAY</div>
                 <div style="margin-top: 6px; display: flex; gap: 12px; font-size: 0.85rem; color: #b0e3e8;">
@@ -497,16 +497,35 @@
                 document.getElementById('learningGoal').value = '';
             }
 
-            // ---------- COUNTDOWN THAT STOPS EVERYTHING AT ZERO ----------
-            // Set initial target to 1 day 16 hours 59 minutes 59 seconds from now
-            let countdownTarget = new Date();
-            countdownTarget.setDate(countdownTarget.getDate() + 1);   // +1 day
-            countdownTarget.setHours(countdownTarget.getHours() + 16); // +16 hours
-            countdownTarget.setMinutes(countdownTarget.getMinutes() + 59); // +59 minutes
-            countdownTarget.setSeconds(countdownTarget.getSeconds() + 59); // +59 seconds
-
+            // ---------- PERSISTENT COUNTDOWN — NEVER RESETS ----------
+            // Stores the target date in localStorage so it's the same for everyone, forever
+            
+            const TARGET_STORAGE_KEY = 'bootcamp_start_target';
             let timerExpired = false;
             let intervalId = null;
+
+            function getCountdownTarget() {
+                const stored = localStorage.getItem(TARGET_STORAGE_KEY);
+                
+                if (stored) {
+                    // Use existing target from the very first visitor
+                    return new Date(stored);
+                } else {
+                    // First visit EVER: set target to 1d 16h 59m 59s from NOW
+                    let target = new Date();
+                    target.setDate(target.getDate() + 1);
+                    target.setHours(target.getHours() + 16);
+                    target.setMinutes(target.getMinutes() + 59);
+                    target.setSeconds(target.getSeconds() + 59);
+                    
+                    // Store it forever — every visitor will count down to this exact moment
+                    localStorage.setItem(TARGET_STORAGE_KEY, target.toISOString());
+                    return target;
+                }
+            }
+
+            // Create the persistent target (same for ALL users, ALL sessions)
+            const countdownTarget = getCountdownTarget();
 
             function freezeBootcamp() {
                 // Stop the timer from ticking further
@@ -533,7 +552,7 @@
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<i class="fas fa-ban"></i> Registration closed';
                 
-                // Disable Telegram DM link visually (can't disable <a> but we can remove href)
+                // Disable Telegram DM link visually
                 const telegramLink = document.querySelector('a[href="https://t.me/Just_Collins101"]');
                 if (telegramLink) {
                     telegramLink.classList.add('btn-outline');
@@ -556,7 +575,7 @@
                 const diff = countdownTarget - now;
 
                 if (diff <= 0) {
-                    // TIMER HIT ZERO — STOP EVERYTHING
+                    // TIMER HIT ZERO — STOP EVERYTHING (once and forever)
                     document.getElementById('days').innerText = '00';
                     document.getElementById('hours').innerText = '00';
                     document.getElementById('minutes').innerText = '00';
@@ -580,9 +599,19 @@
             window.onload = function() {
                 renderSlots();
                 
-                // Start the countdown ticking every second
-                updateLiveCountdown();  // immediate first draw
-                intervalId = setInterval(updateLiveCountdown, 1000);
+                // Check if timer already expired from previous sessions
+                if (new Date() >= countdownTarget) {
+                    // Timer already hit zero — keep everything locked
+                    document.getElementById('days').innerText = '00';
+                    document.getElementById('hours').innerText = '00';
+                    document.getElementById('minutes').innerText = '00';
+                    document.getElementById('seconds').innerText = '00';
+                    freezeBootcamp();
+                } else {
+                    // Start the countdown ticking every second
+                    updateLiveCountdown();
+                    intervalId = setInterval(updateLiveCountdown, 1000);
+                }
                 
                 document.getElementById('submitBtn').addEventListener('click', handleSubmit);
             };
