@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Python Bootcamp · Dev Collins</title>
+    <!-- Inter font — clean, modern, minimalist -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome minimal icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* DARK MODE — MINIMAL, PROFESSIONAL, ZERO CLUTTER */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0b1416;
+            color: #e2ecef;
+            line-height: 1.5;
+            padding: 24px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #16292e;
+            border-radius: 24px;
+            padding: 40px 32px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid #2a4a50;
+        }
+
+        /* TYPOGRAPHY — CLEAN DARK MODE */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #f0fbfd;
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #1e3f45;
+            color: #c6f7f2;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-bottom: 24px;
+            border: 1px solid #3e7b84;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #d6f3f5;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        p, li {
+            color: #bed7db;
+            font-size: 0.95rem;
+        }
+
+        /* CLEAN GRID — RESPONSIVE */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 32px 0 24px;
+        }
+
+        .stat-card {
+            background: #1e383e;
+            padding: 24px 20px;
+            border-radius: 20px;
+            border: 1px solid #2f5a61;
+        }
+
+        .stat-number {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #aef2f0;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #acd8dd;
+            font-weight: 600;
+        }
+
+        .slot-highlight {
+            color: #c2fffb;
+            font-weight: 700;
+            background: #1d4a4f;
+            padding: 2px 10px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #2f555c;
+            margin: 32px 0 24px;
+        }
+
+        /* FORM — DARK, CLEAN */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #b3e3e8;
+            margin-bottom: 6px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 0.95rem;
+            background: #203c42;
+            border: 1.5px solid #2f626b;
+            border-radius: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: 0.1s ease;
+            color: #ffffff;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #8ab3ba;
+            opacity: 0.7;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #6acad1;
+            outline: none;
+            background: #1c4148;
+            box-shadow: 0 0 0 3px rgba(106, 202, 209, 0.1);
+        }
+
+        select {
+            color: white;
+        }
+
+        select option {
+            background: #1a3a40;
+            color: white;
+        }
+
+        .row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* BUTTONS — CLEAN DARK MODE */
+        .btn {
+            border: none;
+            background: #31838e;
+            color: white;
+            font-weight: 600;
+            padding: 16px 28px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 1px solid transparent;
+        }
+
+        .btn:hover {
+            background: #3f9ea8;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #c8f7fc;
+            border: 1.5px solid #479ca5;
+        }
+
+        .btn-outline:hover {
+            background: #235b62;
+            border-color: #7fd1d9;
+        }
+
+        .btn:disabled {
+            background: #2d555b;
+            color: #9fcbd1;
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .flex-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            margin: 16px 0 8px;
+        }
+
+        /* EMAIL LIST — DARK, SUBTLE, NO CLEAR BUTTON */
+        .email-preview {
+            background: #1b383f;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 32px;
+            border: 1px solid #2f656d;
+        }
+
+        .email-list {
+            margin-top: 12px;
+        }
+
+        .email-item {
+            background: #17373d;
+            padding: 12px 16px;
+            border-radius: 14px;
+            border: 1px solid #2e6a73;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #deeff2;
+        }
+
+        .delete-email {
+            background: none;
+            border: none;
+            color: #98c8cf;
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 4px 8px;
+            border-radius: 30px;
+        }
+
+        .delete-email:hover {
+            color: #ffb5b5;
+            background: #2a4f57;
+        }
+
+        /* TELEGRAM CARD — DARK */
+        .telegram-hint {
+            background: #1a4047;
+            padding: 18px 22px;
+            border-radius: 20px;
+            border-left: 5px solid #53c2cc;
+            font-size: 0.9rem;
+            margin: 24px 0 8px;
+            color: #d6f0f0;
+        }
+
+        .telegram-hint a {
+            color: #a3f0ff;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+        .footer {
+            margin-top: 40px;
+            color: #9ac2c9;
+            font-size: 0.8rem;
+            text-align: center;
+            border-top: 1px solid #2e636b;
+            padding-top: 24px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .container { padding: 28px 20px; }
+            h1 { font-size: 1.8rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .row-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER — CLEAN DARK -->
+        <div class="badge">
+            <i class="fas fa-snake" style="margin-right: 4px;"></i> 1 week · free · limited to 10
+        </div>
+        <h1>Dev Collins Python Lab</h1>
+        <p style="font-size: 1.1rem; color: #c6edf0; margin-bottom: 16px;">Build real projects. Telegram bots + Flask. 7 days, live.</p>
+        
+        <!-- SLOT & COUNTDOWN — DARK MINIMAL -->
+        <div class="grid-2">
+            <!-- SLOT COUNTER — REAL, PERSISTENT, NO CLEAR -->
+            <div class="stat-card">
+                <div class="stat-number" id="slotDisplay">10</div>
+                <div class="stat-label">REMAINING SLOTS</div>
+                <div style="margin-top: 12px; font-size: 0.85rem; color: #b8e3e8;" id="waitlistHint"></div>
+            </div>
+            <!-- COUNTDOWN — 6:30PM WAT -->
+            <div class="stat-card">
+                <div class="stat-number" id="days">02</div>
+                <div class="stat-label">DAYS UNTIL START</div>
+                <div style="margin-top: 6px; display: flex; gap: 12px; font-size: 0.85rem; color: #b0e3e8;">
+                    <span><span id="hours">18</span>h</span>
+                    <span><span id="minutes">30</span>m</span>
+                    <span><span id="seconds">45</span>s</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCHEDULE + RULE — DARK MINIMAL CARD -->
+        <div style="background: #1a3c42; padding: 20px 24px; border-radius: 18px; margin: 8px 0 16px;">
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;">
+                <div>
+                    <span style="font-weight: 700; color: #c6f7f5;"><i class="far fa-clock"></i> 6:30 – 9:30 PM WAT</span>
+                    <span style="background: #19474e; padding: 4px 14px; border-radius: 60px; font-size: 0.75rem; font-weight: 600; margin-left: 12px; color: #c2f2f0;">DAILY</span>
+                </div>
+                <div style="font-size: 0.85rem; background: #2d4846; padding: 8px 18px; border-radius: 60px; color: #ffe2b3;">
+                    <i class="fas fa-gavel"></i> Miss 2 sessions → slot released
+                </div>
+            </div>
+        </div>
+
+        <!-- COMMITMENT NOTICE — TELEGRAM RULE -->
+        <div class="telegram-hint">
+            <i class="fab fa-telegram" style="color: #6ad4dd; font-size: 1.1rem;"></i> 
+            <strong>Telegram confirmation required:</strong> After sign-up, DM <a href="https://t.me/Just_Collins101" target="_blank">@Just_Collins101</a> with your name. Spot is reserved only after DM.
+        </div>
+
+        <!-- ========== REGISTRATION FORM — DARK MINIMAL ========= -->
+        <hr>
+        <h2 style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-pen" style="color: #6acad1; font-size: 1.1rem;"></i> Register</h2>
+        
+        <form id="bootcampForm">
+            <div class="row-2">
+                <div class="form-group">
+                    <label>First name</label>
+                    <input type="text" id="firstName" placeholder="e.g., Ada" autocomplete="given-name">
+                </div>
+                <div class="form-group">
+                    <label>Last name</label>
+                    <input type="text" id="lastName" placeholder="e.g., Obi" autocomplete="family-name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label>Current skill</label>
+                <select id="skillLevel">
+                    <option value="" disabled selected>— select —</option>
+                    <option value="Absolute beginner">🐣 Complete beginner</option>
+                    <option value="Basics known">⚡ Know some Python</option>
+                    <option value="Some experience">🛠️ Built small scripts</option>
+                    <option value="Advanced beginner">🔥 Ready for projects</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>What will you build in 1 week? (optional)</label>
+                <textarea id="learningGoal" rows="2" placeholder="e.g., Telegram bot, simple portfolio..."></textarea>
+            </div>
+
+            <div class="flex-row">
+                <button type="button" id="submitBtn" class="btn">
+                    <i class="fas fa-check"></i> Secure slot
+                </button>
+                <a href="https://t.me/Just_Collins101" class="btn-outline btn" style="text-decoration: none;" target="_blank">
+                    <i class="fab fa-telegram"></i> Telegram DM
+                </a>
+                <span style="font-size: 0.75rem; color: #b2e1e6;" id="slotStatusBadge"></span>
+            </div>
+        </form>
+
+        <!-- ===== EMAIL STORAGE — PERSISTENT, NO CLEAR BUTTON ===== -->
+        <div class="email-preview">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 600; color: #c2f3f0;"><i class="fas fa-database" style="margin-right: 6px;"></i> Signed up (local storage)</span>
+                <!-- 🚫 CLEAR BUTTON REMOVED — PERFECTLY SECURE -->
+            </div>
+            <div id="emailList" class="email-list">
+                <!-- dynamic email list from localStorage -->
+            </div>
+            <p style="font-size: 0.7rem; color: #9acfd6; margin-top: 12px;">
+                <i class="fas fa-info-circle"></i> Slots = 10 − registrations. Emails stored locally. Individual deletion allowed.
+            </p>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>Bootcamp starts when 10 slots are full — group opens on Telegram.</p>
+            <p style="margin-top: 12px;">Dev Collins · Python Lab</p>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            "use strict";
+
+            // ---------- PERSISTENT STORAGE (NO CLEAR BUTTON) ----------
+            const STORAGE_KEY = 'bc_emails_dark_minimal';
+            
+            function getEmails() {
+                try {
+                    const stored = localStorage.getItem(STORAGE_KEY);
+                    return stored ? JSON.parse(stored) : [];
+                } catch (e) {
+                    return [];
+                }
+            }
+
+            function saveEmail(data) {
+                let emails = getEmails();
+                // no duplicate emails
+                if (emails.some(e => e.email.toLowerCase() === data.email.toLowerCase())) {
+                    alert('This email is already registered.');
+                    return false;
+                }
+                emails.push(data);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(emails));
+                return true;
+            }
+
+            function deleteEmail(emailToDelete) {
+                let emails = getEmails();
+                emails = emails.filter(e => e.email.toLowerCase() !== emailToDelete.toLowerCase());
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(emails));
+                renderAll();
+            }
+
+            // ---------- SLOT LOGIC (REAL, PERSISTENT) ----------
+            function remainingSlots() {
+                return Math.max(0, 10 - getEmails().length);
+            }
+
+            // ---------- RENDER UI (SLOTS, LIST, BUTTON STATE) ----------
+            function renderAll() {
+                // slot number
+                const slots = remainingSlots();
+                const slotEl = document.getElementById('slotDisplay');
+                if (slotEl) slotEl.innerText = slots;
+
+                // email list
+                const emails = getEmails();
+                const listContainer = document.getElementById('emailList');
+                if (listContainer) {
+                    if (emails.length === 0) {
+                        listContainer.innerHTML = '<div style="color: #aad2d8; padding: 8px 0;">— No sign-ups yet —</div>';
+                    } else {
+                        let html = '';
+                        emails.slice().reverse().forEach(item => {
+                            html += `<div class="email-item">
+                                        <span><i class="fas fa-user-circle" style="color: #7fd1d9;"></i> ${item.email} (${item.firstName || ''})</span>
+                                        <button class="delete-email" onclick="window.deleteEmailHandler('${item.email}')"><i class="fas fa-times"></i></button>
+                                    </div>`;
+                        });
+                        listContainer.innerHTML = html;
+                    }
+                }
+
+                // waitlist hint & submit button state
+                const submitBtn = document.getElementById('submitBtn');
+                const waitlistHint = document.getElementById('waitlistHint');
+                const slotStatusBadge = document.getElementById('slotStatusBadge');
+
+                if (slots <= 0) {
+                    if (waitlistHint) waitlistHint.innerHTML = '<span style="background: #2d4a4a; padding: 4px 12px; border-radius: 60px; color: #ffd6a5;"><i class="fas fa-circle-exclamation"></i> Waitlist mode: 0 slots</span>';
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '<i class="fas fa-pause"></i> Slots full · Join waitlist';
+                    }
+                    if (slotStatusBadge) slotStatusBadge.innerText = '⏸️ Waitlist only';
+                } else {
+                    if (waitlistHint) waitlistHint.innerHTML = `${slots} spot${slots !== 1 ? 's' : ''} left — first come, first served`;
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-check"></i> Secure slot';
+                    }
+                    if (slotStatusBadge) slotStatusBadge.innerText = `${slots} slots open`;
+                }
+            }
+
+            // ---------- FORM SUBMIT ----------
+            function handleSubmit() {
+                const firstName = document.getElementById('firstName').value.trim();
+                const lastName = document.getElementById('lastName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const skill = document.getElementById('skillLevel').value;
+                const goal = document.getElementById('learningGoal').value.trim();
+
+                if (!firstName || !lastName || !email || !skill) {
+                    alert('Please fill in first name, last name, email and skill level.');
+                    return;
+                }
+                if (!/^\S+@\S+\.\S+$/.test(email)) {
+                    alert('Enter a valid email address.');
+                    return;
+                }
+
+                const slots = remainingSlots();
+                const isWaitlist = slots <= 0;
+
+                // save to localStorage
+                const success = saveEmail({
+                    firstName, lastName, email, skill, goal: goal || '(no goal)',
+                    timestamp: new Date().toISOString(),
+                    waitlisted: isWaitlist || false
+                });
+
+                if (!success) return; // duplicate email
+
+                // slot update after save
+                renderAll();
+
+                // mailto: clean professional format
+                const subject = `Bootcamp: ${firstName} ${lastName} - ${skill}`;
+                let body = `Name: ${firstName} ${lastName}\n`;
+                body += `Email: ${email}\nSkill: ${skill}\nGoal: ${goal || '—'}\n`;
+                body += `Status: ${isWaitlist ? 'WAITLIST' : 'SLOT TAKEN'}\n`;
+                body += `Remaining slots: ${remainingSlots()}\n\n`;
+                body += `Telegram DM required: @Just_Collins101`;
+                
+                window.location.href = `mailto:ifeanyichukwucollins008@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                if (!isWaitlist) {
+                    alert(`✅ Slot secured! Now DM @Just_Collins101 on Telegram with your name (${firstName} ${lastName}) to confirm.`);
+                } else {
+                    alert(`⏳ You're on the waitlist. We'll email you if a spot opens. Still DM @Just_Collins101 to show interest.`);
+                }
+
+                // optional: clear only goal field, keep name/email for convenience
+                document.getElementById('learningGoal').value = '';
+            }
+
+            // ---------- COUNTDOWN (TO NEXT 6:30PM WAT) ----------
+            function updateCountdown() {
+                const now = new Date();
+                let target = new Date();
+                target.setHours(18, 30, 0, 0); // 6:30 PM
+                if (now > target) {
+                    target.setDate(target.getDate() + 1);
+                }
+                const diff = target - now;
+                if (diff < 0) return;
+                const days = Math.floor(diff / (1000*60*60*24));
+                const hours = Math.floor((diff % 86400000) / 3600000);
+                const minutes = Math.floor((diff % 3600000) / 60000);
+                const seconds = Math.floor((diff % 60000) / 1000);
+
+                document.getElementById('days').innerText = days.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+            }
+
+            // make delete function global for onclick (individual deletion only)
+            window.deleteEmailHandler = function(email) {
+                if (confirm(`Remove ${email} from list?`)) {
+                    deleteEmail(email);
+                }
+            };
+
+            // ---------- INIT ----------
+            window.onload = function() {
+                renderAll();
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+
+                // bind events
+                document.getElementById('submitBtn').addEventListener('click', handleSubmit);
+            };
+        })();
+    </script>
+</body>
+</html>
